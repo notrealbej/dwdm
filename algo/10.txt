@@ -1,0 +1,48 @@
+Here is the algorithm for your R code:
+
+---
+
+### **Algorithm: Data Visualization using R**
+#### **Step 1: Load Required Libraries**
+1. Load the `ggplot2` library to enable advanced plotting capabilities.
+
+#### **Step 2: Scatter Plot for Sepal Length vs. Sepal Width (iris Dataset)**
+1. Load the built-in `iris` dataset.
+2. Create a scatter plot using base R:
+   - Set `Sepal.Length` on the x-axis and `Sepal.Width` on the y-axis.
+   - Color points based on the `Species` variable.
+   - Customize plot appearance with labels and a title.
+
+#### **Step 3: Scatter Plot for Horsepower vs. Miles Per Gallon (mtcars Dataset)**
+1. Load the built-in `mtcars` dataset.
+2. Create a scatter plot using `ggplot2`:
+   - Set `hp` (Horsepower) on the x-axis and `mpg` (Miles per Gallon) on the y-axis.
+   - Color points based on the number of cylinders (`cyl`).
+   - Adjust point size for better visibility.
+   - Add labels and a title.
+   - Use `theme_minimal()` for a clean look.
+
+#### **Step 4: Pie Chart for Species Distribution (iris Dataset)**
+1. Count the occurrences of each species using `table()`.
+2. Create a pie chart:
+   - Use `rainbow(3)` to assign different colors.
+   - Add a title to the pie chart.
+
+#### **Step 5: Pie Chart for Cylinder Distribution (mtcars Dataset)**
+1. Count the occurrences of each cylinder category using `table()`.
+2. Create a pie chart:
+   - Use `rainbow(3)` for coloring.
+   - Add a title.
+
+#### **Step 6: Scatter Plot for Petal Length vs. Petal Width (iris Dataset)**
+1. Use the `iris` dataset.
+2. Create a scatter plot using `ggplot2`:
+   - Set `Petal.Length` on the x-axis and `Petal.Width` on the y-axis.
+   - Color points based on `Species`.
+   - Adjust point size.
+   - Add labels and a title.
+   - Apply `theme_minimal()` for aesthetics.
+
+---
+
+This structured algorithm should help you in your lab exam. Let me know if you need modifications! 😊

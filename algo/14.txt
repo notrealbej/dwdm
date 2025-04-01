@@ -1,0 +1,62 @@
+### **Algorithm: Mushroom Classification using Naïve Bayes**  
+
+---
+
+### **Step 1: Load Required Libraries**  
+1. Import necessary R libraries:  
+   - `e1071` for Naïve Bayes classification.  
+   - `ggplot2` for data visualization.  
+   - `caret` for train-test splitting and model evaluation.  
+
+---
+
+### **Step 2: Load and Prepare the Dataset**  
+1. Read the `mushrooms.csv` dataset from a local file.  
+2. Ensure all columns are treated as **factors** for categorical classification.  
+3. Remove any missing values using `na.omit()`.  
+
+---
+
+### **Step 3: Perform Train-Test Split (80%-20%)**  
+1. Set a random seed for reproducibility.  
+2. Use `createDataPartition()` to split the dataset:  
+   - **80% Training Data** (`train_data`)  
+   - **20% Testing Data** (`test_data`)  
+
+---
+
+### **Step 4: Train the Naïve Bayes Classifier**  
+1. Train a **Naïve Bayes model** using `naiveBayes()` with all available features.  
+
+---
+
+### **Step 5: Visualize Data Distribution**  
+1. Create a bar chart showing the **distribution of cap shape by class (edible/poisonous)** using `ggplot2`.  
+
+---
+
+### **Step 6: Evaluate Model Accuracy and Precision**  
+1. Make predictions on the test dataset using `predict()`.  
+2. Compute a **confusion matrix** using `confusionMatrix()`.  
+3. Extract and display:  
+   - **Accuracy**  
+   - **Precision** (for poisonous mushrooms)  
+
+---
+
+### **Step 7: Tune Hyperparameters (Laplace Smoothing)**  
+1. Train a new Naïve Bayes model with **Laplace smoothing (laplace = 1)** to handle zero probabilities.  
+2. Make predictions using the tuned model.  
+3. Compute the new confusion matrix and **display the improved accuracy**.  
+
+---
+
+### **Step 8: Feature Importance Analysis**  
+1. Extract **conditional probability tables** from the Naïve Bayes model.  
+2. Compute the importance of each feature:  
+   - Calculate the mean absolute difference in conditional probabilities for each class.  
+3. Plot a **bar chart of feature importance** using `ggplot2`.  
+
+---
+
+This structured algorithm summarizes your **Mushroom Classification Model** workflow in R. Let me know if you need any changes! 🍄🚀

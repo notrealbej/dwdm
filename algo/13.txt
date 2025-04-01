@@ -1,0 +1,83 @@
+### **Algorithm: Breast Cancer Classification Using Decision Tree and Naive Bayes**  
+
+---
+
+### **Step 1: Load Required Libraries**  
+1. Import necessary R libraries:  
+   - `mlbench` for the dataset  
+   - `caret` for data splitting  
+   - `rpart` for decision tree modeling  
+   - `e1071` for Naive Bayes modeling  
+   - `pROC` for performance evaluation  
+
+---
+
+### **Step 2: Load and Prepare the Dataset**  
+1. Load the `BreastCancer` dataset from the `mlbench` package.  
+2. Display the first few rows of the dataset.  
+3. Remove missing values using `na.omit()`.  
+4. Remove the **ID** column as it is not useful for classification.  
+5. Convert the target variable (`Class`) into a **factor** with levels:  
+   - `"benign"`  
+   - `"malignant"`  
+
+---
+
+### **Step 3: Split the Data into Training and Testing Sets**  
+1. Set a random seed for reproducibility.  
+2. Use `createDataPartition()` to split the dataset:  
+   - **70% Training Data** (`trainData`)  
+   - **30% Testing Data** (`testData`)  
+
+---
+
+### **Step 4: Train the Decision Tree Model**  
+1. Train a decision tree model using `rpart()`, with the target variable as `Class`.  
+2. Set model parameters:  
+   - `minsplit = 20` (minimum number of observations needed to split a node)  
+   - `cp = 0.01` (complexity parameter for pruning)  
+3. Print the trained model structure.  
+
+---
+
+### **Step 5: Make Predictions with Decision Tree**  
+1. Predict class probabilities on the test data using `predict()`.  
+2. Convert probability predictions into class labels:  
+   - If probability > 0.5, classify as `"malignant"`, else `"benign"`.  
+3. Convert predictions into a factor with correct levels.  
+
+---
+
+### **Step 6: Evaluate Decision Tree Model**  
+1. Compute **ROC curve** using `roc()`.  
+2. Plot the ROC curve for the decision tree model.  
+3. Calculate and display the **AUC (Area Under the Curve)**.  
+4. Plot the complexity parameter (`cp`) table and tree visualization using `rpart.plot()`.  
+
+---
+
+### **Step 7: Train the Naive Bayes Model**  
+1. Train a Naive Bayes classifier using `naiveBayes()`.  
+2. Use `Class` as the target variable and all other attributes as predictors.  
+
+---
+
+### **Step 8: Make Predictions with Naive Bayes**  
+1. Predict class probabilities using `predict()` with `type = "raw"`.  
+
+---
+
+### **Step 9: Evaluate Naive Bayes Model**  
+1. Compute **ROC curve** for the Naive Bayes model using `roc()`.  
+2. Plot the ROC curve for the Naive Bayes model.  
+3. Calculate and display the **AUC value**.  
+
+---
+
+### **Step 10: Compare Model Performance**  
+1. Compare the AUC values of both models.  
+2. Print the AUC for both Decision Tree and Naive Bayes.  
+
+---
+
+This algorithm summarizes your R code workflow for **breast cancer classification** using Decision Tree and Naive Bayes. Let me know if you need modifications! 🚀

@@ -1,0 +1,46 @@
+### **Algorithm: K-Means Clustering on the Iris Dataset**  
+
+---
+
+### **Step 1: Load Required Libraries**  
+1. Import necessary R libraries:  
+   - `datasets` for the built-in `iris` dataset.  
+   - `ggplot2` for data visualization.  
+
+---
+
+### **Step 2: Load and Preprocess the Dataset**  
+1. Load the `iris` dataset.  
+2. Remove the `Species` column (since K-Means is an unsupervised algorithm).  
+
+---
+
+### **Step 3: Determine Optimal Number of Clusters (K) using Elbow Method**  
+1. Compute the **Within-Cluster Sum of Squares (WSS)** for `K` values ranging from **1 to 10**.  
+2. Use `sapply()` to run `kmeans()` for each `K` and store the **total within-cluster sum of squares**.  
+3. Plot the WSS against the number of clusters (`K`) to visualize the **Elbow Point**.  
+
+---
+
+### **Step 4: Perform K-Means Clustering (K = 3)**  
+1. Set a **random seed** for reproducibility.  
+2. Run `kmeans()` with **K = 3** (chosen from the Elbow Method).  
+3. Use `nstart = 10` to **improve cluster initialization**.  
+
+---
+
+### **Step 5: Visualize the Clusters**  
+1. Assign cluster labels from `kmeans_result` to the original dataset.  
+2. Use `ggplot2` to create a **scatter plot** of `Sepal.Length` vs. `Sepal.Width`,  
+   - Color points based on cluster assignments.  
+   - Display the clustering results visually.  
+
+---
+
+### **Step 6: Evaluate Clustering Performance**  
+1. Compare the **K-Means cluster labels** with the actual **species labels** using a **confusion matrix** (`table()`).  
+2. Analyze how well the K-Means clustering aligns with the original species classification.  
+
+---
+
+This structured algorithm explains your **K-Means Clustering Implementation** on the **Iris Dataset**. Let me know if you need any refinements! 🚀

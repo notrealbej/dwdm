@@ -1,0 +1,47 @@
+### **Algorithm: Decision Tree Model for Iris Dataset**
+
+#### **Step 1: Import the Dataset**
+1. Load necessary libraries: `rpart`, `rpart.plot`, and `caret`.
+2. Load the built-in `iris` dataset.
+
+#### **Step 2: Clean the Data**
+1. Check for missing values using `sum(is.na(iris))`.
+2. Since the `iris` dataset is already clean, no additional cleaning is required.
+
+#### **Step 3: Split the Data into Training and Testing Sets**
+1. Set a seed value for reproducibility.
+2. Use `createDataPartition()` to split the dataset:
+   - 70% of the data is assigned to `trainData`.
+   - 30% of the data is assigned to `testData`.
+
+#### **Step 4: Build the Decision Tree Model**
+1. Train a decision tree model using the `rpart()` function.
+2. Use all predictor variables to classify the `Species` column.
+3. Visualize the decision tree using `rpart.plot()`.
+
+#### **Step 5: Make Predictions**
+1. Use the trained decision tree model to predict species on `testData`.
+2. Store predictions.
+
+#### **Step 6: Evaluate Model Performance**
+1. Compute a confusion matrix using `confusionMatrix()` to compare predictions with actual labels.
+2. Print the confusion matrix.
+3. Extract and display the model's accuracy.
+
+#### **Step 7: Tune Hyperparameters for Better Accuracy**
+1. Define a grid of values for the complexity parameter (`cp`) using `expand.grid()`.
+2. Perform cross-validation tuning using `train()` from the `caret` package.
+3. Identify and print the best `cp` value.
+4. Extract and print the tuned model’s accuracy.
+5. Train a new decision tree using the best `cp` value.
+6. Visualize the tuned decision tree.
+
+#### **Step 8: Evaluate the Tuned Model**
+1. Use the tuned decision tree model to make predictions on `testData`.
+2. Compute a confusion matrix for the tuned model.
+3. Print the confusion matrix.
+4. Extract and display the tuned model’s accuracy.
+
+---
+
+This algorithm summarizes the steps performed in your R code. Let me know if you need any refinements! 🚀

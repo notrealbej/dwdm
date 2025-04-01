@@ -1,0 +1,63 @@
+### **Algorithm: Neural Network and Decision Tree for Iris Dataset**  
+
+---
+
+### **Step 1: Load the Dataset**  
+1. Load the required libraries: `neuralnet`, `C50`, `caret`, and `dplyr`.  
+2. Load the `iris` dataset.  
+3. Display the first few rows of the dataset.  
+
+---
+
+### **Step 2: Prepare the Data**  
+1. Convert the categorical `Species` column into dummy variables:
+   - Create three binary columns (`setosa`, `versicolor`, `virginica`) to represent species.  
+2. Display the modified dataset.  
+
+---
+
+### **Step 3: Split the Data into Training and Testing Sets**  
+1. Set a random seed for reproducibility.  
+2. Randomly split the dataset into:
+   - 70% training data (`train_data`)  
+   - 30% testing data (`test_data`)  
+3. Display sample training and testing data.  
+
+---
+
+### **Step 4: Train the Backpropagation Neural Network (BPNN)**  
+1. Define the neural network formula with the four feature variables (`Sepal.Length`, `Sepal.Width`, `Petal.Length`, `Petal.Width`) as inputs and the three dummy species columns as outputs.  
+2. Train a neural network model using `neuralnet()` with:
+   - One hidden layer containing 5 neurons  
+   - `linear.output = FALSE` since this is a classification problem  
+
+---
+
+### **Step 5: Predict with Neural Network**  
+1. Use the trained neural network model to make predictions on the test dataset.  
+2. Convert the raw outputs into species predictions by selecting the species with the highest probability.  
+3. Convert the numeric predictions into factor labels (`setosa`, `versicolor`, `virginica`).  
+4. Display the final predictions.  
+
+---
+
+### **Step 6: Train the Decision Tree Model**  
+1. Train a decision tree model using `C5.0()` with `Species` as the target variable and the four numerical features as predictors.  
+
+---
+
+### **Step 7: Predict with Decision Tree**  
+1. Use the trained decision tree model to predict species on the test dataset.  
+2. Display the predictions.  
+
+---
+
+### **Step 8: Evaluate Both Models**  
+1. Compute confusion matrices for both models:
+   - Neural Network (`confusionMatrix(nn_pred, test_data$Species)`)  
+   - Decision Tree (`confusionMatrix(dt_pred, test_data$Species)`)  
+2. Display the performance metrics, including accuracy, precision, recall, and F1-score for both models.  
+
+---
+
+This structured algorithm captures the workflow of your R code. Let me know if you need any refinements! 🚀
