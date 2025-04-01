@@ -1,0 +1,69 @@
+# Lab1_Familiarize.R
+# Familiarization of R Programming
+
+# --- Variable Creation ---
+x <- 10
+y = 20
+assign("z", 30)
+
+# Print function
+print(x)  # Output: 10
+print(y)  # Output: 20
+print(z)  # Output: 30
+
+# --- Concatenation of Elements ---
+vec <- c(1, 2, 3, 4, 5)
+print(vec)  # Output: [1] 1 2 3 4 5
+
+# --- Assigning Single Value to Multiple Variables ---
+a <- b <- c <- 50
+print(a)  # Output: 50
+print(b)  # Output: 50
+print(c)  # Output: 50
+
+# --- Data Types in R ---
+
+# Logical
+bool_var <- TRUE
+print(bool_var)  # Output: TRUE
+print(class(bool_var))  # Output: "logical"
+
+# Numeric
+num_var <- 3.14
+print(num_var)  # Output: 3.14
+print(class(num_var))  # Output: "numeric"
+
+# Integer
+int_var <- 10L
+print(int_var)  # Output: 10
+print(class(int_var))  # Output: "integer"
+
+# Complex
+comp_var <- 2 + 3i
+print(comp_var)  # Output: 2+3i
+print(class(comp_var))  # Output: "complex"
+
+# Raw
+raw_var <- charToRaw("Hello")
+print(raw_var)  # Output: 48 65 6c 6c 6f
+print(class(raw_var))  # Output: "raw"
+
+# --- Data Type Conversion ---
+# Convert integer to numeric
+num1 <- as.numeric(10L)
+print(class(num1))  # Output: "numeric"
+
+# Convert numeric to integer
+int1 <- as.integer(3.14)
+print(int1)  # Output: 3
+
+# Convert numeric to logical
+log1 <- as.logical(0)  # FALSE
+log2 <- as.logical(1)  # TRUE
+print(log1)
+print(log2)
+
+# Convert character to raw
+raw1 <- charToRaw("R")
+print(raw1)  # Output: 52
+

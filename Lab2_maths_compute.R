@@ -1,0 +1,119 @@
+# ------------------------------
+# 1. Check if a number is Odd or Even
+# ------------------------------
+check_odd_even <- function(num) {
+  if (num %% 2 == 0) {
+    print(paste(num, "is Even"))
+  } else {
+    print(paste(num, "is Odd"))
+  }
+}
+
+# Example
+check_odd_even(10)  # Even
+check_odd_even(7)   # Odd
+
+# ------------------------------
+# 2. Factorial of a Number
+# ------------------------------
+
+# (i) Without using function
+# a) Using for loop
+num <- 5
+fact <- 1
+for (i in 1:num) {
+  fact <- fact * i
+}
+print(paste("Factorial of", num, "using for loop:", fact))
+
+# b) Using while loop
+num <- 5
+fact <- 1
+i <- 1
+while (i <= num) {
+  fact <- fact * i
+  i <- i + 1
+}
+print(paste("Factorial of", num, "using while loop:", fact))
+
+# (ii) Using user-defined function
+factorial_function <- function(n) {
+  if (n == 0) return(1)
+  fact <- 1
+  for (i in 1:n) {
+    fact <- fact * i
+  }
+  return(fact)
+}
+
+# Example
+print(paste("Factorial using function:", factorial_function(5)))
+
+# ------------------------------
+# 3. Sum of Natural Numbers
+# ------------------------------
+
+# (i) Without using function
+# a) Using for loop
+num <- 10
+sum_natural <- 0
+for (i in 1:num) {
+  sum_natural <- sum_natural + i
+}
+print(paste("Sum of first", num, "natural numbers using for loop:", sum_natural))
+
+# b) Using while loop
+num <- 10
+sum_natural <- 0
+i <- 1
+while (i <= num) {
+  sum_natural <- sum_natural + i
+  i <- i + 1
+}
+print(paste("Sum using while loop:", sum_natural))
+
+# (ii) Using user-defined function
+sum_natural_function <- function(n) {
+  return(n * (n + 1) / 2)  # Using sum formula
+}
+
+# Example
+print(paste("Sum using function:", sum_natural_function(10)))
+
+# ------------------------------
+# 4. Check if a Number is Prime
+# ------------------------------
+is_prime <- function(n) {
+  if (n < 2) return(FALSE)
+  for (i in 2:sqrt(n)) {
+    if (n %% i == 0) {
+      return(FALSE)
+    }
+  }
+  return(TRUE)
+}
+
+# Example
+num <- 17
+if (is_prime(num)) {
+  print(paste(num, "is Prime"))
+} else {
+  print(paste(num, "is Not Prime"))
+}
+
+# ------------------------------
+# 5. Matrix Multiplication using Data Frames
+# ------------------------------
+df1 <- data.frame(var1 = c(1, 4), var2 = c(2, 5), var3 = c(3, 6))
+df2 <- data.frame(var1 = c(1, 3, 5), var2 = c(2, 4, 6))
+
+# Convert data frames to matrices for multiplication
+mat1 <- as.matrix(df1)
+mat2 <- as.matrix(df2)
+
+# Perform matrix multiplication
+result <- mat1 %*% mat2
+
+# Print result
+print("Matrix Multiplication Result:")
+print(result)

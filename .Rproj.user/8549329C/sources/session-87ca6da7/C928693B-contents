@@ -1,0 +1,158 @@
+# ==============================
+# 📌 Step 1: Load Required Libraries & Datasets
+# ==============================
+if (!require(arules)) install.packages("arules", dependencies=TRUE)
+if (!require(arulesViz)) install.packages("arulesViz", dependencies=TRUE)
+
+# Load libraries
+library(arules)
+library(arulesViz)
+library(datasets)
+
+# ==============================
+# 📌 Step 2: Load & Explore the Groceries Dataset
+# ==============================
+data("Groceries")  # Load dataset
+
+# Number of transactions
+num_transactions <- length(Groceries)
+cat("Number of transactions:", num_transactions, "\n")
+
+# Number of unique items
+num_unique_items <- length(itemLabels(Groceries))
+cat("Number of unique items:", num_unique_items, "\n")
+
+# Print the first 5 transactions
+inspect(Groceries[1:5])
+
+# ==============================
+# 📌 Step 3: Find the Top 10 Frequent Items in Groceries
+# ==============================
+frequent_items <- apriori(Groceries, parameter = list(support = 0.01, target = "frequent itemsets"))
+
+# Sort and display the top 10 frequent itemsets
+top_frequent <- sort(frequent_items, by = "support", decreasing = TRUE)
+inspect(head(top_frequent, 10))
+
+# ==============================
+# 📌 Step 4: Compare Association Rules for Low & High Support Thresholds
+# ==============================
+# Generate rules with low support (0.001) and confidence 0.5
+rules_low <- apriori(Groceries, parameter = list(support = 0.001, confidence = 0.5, target = "rules"))
+
+# Generate rules with high support (0.02) and confidence 0.5
+rules_high <- apriori(Groceries, parameter = list(support = 0.02, confidence = 0.5, target = "rules"))
+
+# Compare the number of rules generated
+cat("Number of rules with low support:", length(rules_low), "\n")
+cat("Number of rules with high support:", length(rules_high), "\n")
+
+# ==============================
+# 📌 Step 5: Convert mtcars Dataset into Transactions & Apply Apriori
+# ==============================
+data("mtcars")  # Load dataset
+
+# Convert continuous variables into categorical bins
+mtcars_cat <- as.data.frame(lapply(mtcars, function(x) cut(x, breaks = 3, labels = c("Low", "Medium", "High"))))
+
+# Convert dataset into transaction format
+mtcars_trans <- as(mtcars_cat, "transactions")
+
+# Apply Apriori algorithm to find frequent itemsets & rules
+mtcars_frequent <- apriori(mtcars_trans, parameter = list(support = 0.3, confidence = 0.7, target = "frequent itemsets"))
+mtcars_rules <- apriori(mtcars_trans, parameter = list(support = 0.3, confidence = 0.7, target = "rules"))
+
+# Display frequent itemsets and rules
+inspect(mtcars_frequent)
+inspect(mtcars_rules)
+
+# ==============================
+# 📌 Step 6: Find Most Frequent Feature Sets in mtcars
+# ==============================
+# Extract frequent itemsets instead of rules
+frequent_features <- apriori(mtcars_trans, parameter = list(support = 0.3, target = "frequent itemsets"))
+
+# Display top 10 frequent feature sets
+inspect(sort(frequent_features, by = "support", decreasing = TRUE)[1:10])
+
+# ==============================
+# 📌 Step 7: Apply Apriori on the iris Dataset
+# ==============================
+data("iris")  # Load dataset
+
+# Convert numerical attributes to categorical bins
+iris_cat <- as.data.frame(lapply(iris[, 1:4], function(x) cut(x, breaks=3, labels=c("Low", "Medium", "High"))))
+iris_cat$Species <- iris$Species  # Keep Species column
+
+# Convert dataset into transactions
+iris_trans <- as(iris_cat, "transactions")
+
+# Apply Apriori to find frequent itemsets in iris
+frequent_items_iris <- apriori(iris_trans, parameter = list(support = 0.2, confidence = 0.7, target = "frequent itemsets"))
+
+# Display frequent itemsets
+inspect(frequent_items_iris)
+
+# ==============================
+# 📌 Step 8: Apply Apriori on Specific Features of mtcars
+# ==============================
+# Convert transmission type to categorical
+mtcars$am <- factor(mtcars$am, levels=c(0,1), labels=c("Auto", "Manual"))
+
+# Select relevant columns and convert to categorical bins
+mtcars_bin <- as.data.frame(lapply(mtcars[, c("hp", "wt")], function(x) cut(x, breaks=3, labels=c("Low", "Medium", "High"))))
+mtcars_bin$am <- mtcars$am  # Keep transmission column
+
+# Convert to transactions
+mtcars_trans <- as(mtcars_bin, "transactions")
+
+# Apply Apriori algorithm on filtered mtcars dataset
+rules_mtcars <- apriori(mtcars_trans, parameter = list(support = 0.3, confidence = 0.7, target = "rules"))
+
+# Display extracted rules
+inspect(rules_mtcars)
+
+# ==============================
+# 📌 Step 9: Apply Apriori on Petal Attributes of iris
+# ==============================
+# Select Petal attributes and species
+iris_petal <- iris[, c("Petal.Length", "Petal.Width", "Species")]
+
+# Convert numerical attributes to categorical bins
+iris_petal$Petal.Length <- cut(iris_petal$Petal.Length, breaks=3, labels=c("Short", "Medium", "Long"))
+iris_petal$Petal.Width <- cut(iris_petal$Petal.Width, breaks=3, labels=c("Narrow", "Medium", "Wide"))
+
+# Convert to transactions
+iris_petal_trans <- as(iris_petal, "transactions")
+
+# Apply Apriori algorithm on Petal attributes
+rules_petal <- apriori(iris_petal_trans, parameter = list(support = 0.2, confidence = 0.7, target = "rules"))
+
+# Display rules
+inspect(rules_petal)
+
+# ==============================
+# 📌 Step 10: Extract Association Rules for Setosa Species
+# ==============================
+# Filter rules where RHS contains "setosa"
+rules_setosa <- subset(rules_petal, subset = rhs %pin% "setosa")
+
+# Display sorted rules for setosa
+inspect(sort(rules_setosa, by="support", decreasing=TRUE))
+
+# ==============================
+# 📌 Step 11: Apply Apriori on Full iris Dataset
+# ==============================
+iris_all <- as.data.frame(lapply(iris[, 1:4], function(x) cut(x, breaks=3, labels=c("Low", "Medium", "High"))))
+iris_all$Species <- iris$Species  # Keep Species column
+
+# Convert dataset into transactions
+iris_all_trans <- as(iris_all, "transactions")
+
+# Apply Apriori to find frequent itemsets & rules
+frequent_itemsets <- apriori(iris_all_trans, parameter = list(support = 0.2, target = "frequent itemsets"))
+rules_iris <- apriori(iris_all_trans, parameter = list(support = 0.2, confidence = 0.7, target = "rules"))
+
+# Display sorted frequent itemsets and rules
+inspect(sort(frequent_itemsets, by="support", decreasing=TRUE))
+inspect(sort(rules_iris, by="confidence", decreasing=TRUE))

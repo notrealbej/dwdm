@@ -1,0 +1,97 @@
+# Import and store as a dataframe
+library(readr)
+
+# Define file path
+file_path <- "D:/Sem6/DataWarehousing/labInputs/Sampledata_L4.csv"
+
+# Read CSV file
+df <- read_csv(file_path)
+
+# Convert to dataframe
+df <- as.data.frame(df)
+
+# Print success message
+print("Dataset successfully imported and saved as a dataframe")
+
+# Familiarize with the dataset
+dim(df)     # Get dimensions (rows, columns)
+head(df)    # View first few rows
+
+# Check dataset structure
+class(df)   # Check class of df
+nrow(df)    # Number of rows
+ncol(df)    # Number of columns
+summary(df) # Summary statistics
+
+## STEP 2
+# Install packages (dplyr)
+install.packages("dplyr")
+library(dplyr)
+
+data_subset <- df[, 1:10]
+
+# View all variable labels
+names(data_subset)
+
+# Modify the variable label
+data_subset <- data_subset %>%
+  rename(Employeeno = 'How many employees does your company or organization have?')
+
+# Determine and correct faulty data types
+str(data_subset)
+data_subset$Employeeno <- as.integer(data_subset$Employeeno)
+
+# Check string inconsistencies for the column "What is your gender?"
+unique(df$`What is your gender?`)
+
+# Correct gender values to "Male" and "Female"
+df$`What is your gender?` <- gsub("(?i)^m.*", "Male", df$`What is your gender?`, perl = TRUE)
+df$`What is your gender?` <- gsub("(?i)^f.*", "Female", df$`What is your gender?`, perl = TRUE)
+
+# Check for missing values
+any(is.na(df))
+
+# Count total missing values
+sum(is.na(df))
+
+# Eliminate missing values completely
+data_no_missing <- na.omit(df)
+
+# Replace NA's with 0s
+data_filled <- df
+data_filled[is.na(data_filled)] <- 0
+
+## STEP 3
+library(dplyr)
+#install.packages("plyr")
+#install.packages("ggplot2")
+
+# Load necessary libraries for plotting
+library(dplyr)
+library(ggplot2)
+
+# Plot Histogram and Boxplot for age, diagnosed mental illnesses, and believed mental illnesses
+ggplot(data_filled, aes(x = `What is your age?`)) +
+  geom_histogram(binwidth = 1, fill = 'blue', color = 'black') +
+  labs(title = "Histogram of Age", x = "Age", y = "Frequency")
+
+ggplot(data_filled, aes(x = `What is your age?`)) +
+  geom_boxplot(fill = 'blue') +
+  labs(title = "Boxplot of Age", x = "Age", y = "Value")
+
+ggplot(data_filled, aes(x = `Have you been diagnosed with a mental health condition by a medical professional?`)) +
+  geom_bar(fill = 'red', color = 'black') +
+  labs(title = "Bar Plot of Diagnosed Mental Illnesses", x = "Diagnosed Mental Illnesses", y = "Frequency")
+
+ggplot(data_filled, aes(x = `Have you been diagnosed with a mental health condition by a medical professional?`)) +
+  geom_boxplot(fill = 'red') +
+  labs(title = "Boxplot of Diagnosed Mental Illnesses", x = "Diagnosed Mental Illnesses", y = "Value")
+
+ggplot(data_filled, aes(x = `If maybe, what condition(s) do you believe you have?`)) +
+  geom_bar(fill = 'green', color = 'black') +
+  labs(title = "Bar Plot of Believed Mental Illnesses", x = "Believed Mental Illnesses", y = "Frequency")
+
+ggplot(data_filled, aes(x = `If maybe, what condition(s) do you believe you have?`)) +
+  geom_boxplot(fill = 'green') +
+  labs(title = "Boxplot of Believed Mental Illnesses", x = "Believed Mental Illnesses", y = "Value")
+

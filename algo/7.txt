@@ -1,0 +1,105 @@
+### **Algorithm for Iris Dataset Processing and Wavelet Analysis in R**  
+**Objective:** Load, clean, preprocess, and apply wavelet transformations to the Iris dataset.
+
+---
+
+## **STEP 1: Load and Explore Dataset**  
+### **Step 1.1: Load Required Libraries**  
+1. Load `dplyr` for data manipulation.  
+2. Load `wavelets` for Discrete Wavelet Transform (DWT).  
+
+### **Step 1.2: Load Dataset from CSV File**  
+1. Read the Iris dataset from the given file path.  
+2. Display the first few rows (`head(iris)`).  
+3. Get a summary of the dataset (`summary(iris)`).  
+4. Visualize basic plots (`plot(iris)`).  
+
+---
+
+## **STEP 2: Data Cleaning and Preprocessing**  
+### **Step 2.1: Handle Missing Values**  
+1. Check for missing values using `any(is.na(iris))`.  
+2. If missing values exist:  
+   - Iterate through numeric columns (`2:5`).  
+   - Replace `NA` values with the column mean (`mean(iris[, i], na.rm = TRUE)`).  
+
+### **Step 2.2: Remove Duplicate Rows**  
+1. Identify and remove duplicate rows using `!duplicated(iris)`.  
+
+### **Step 2.3: Identify and Remove Outliers (Using IQR on SepalLengthCm)**  
+1. Compute **Q1** (25th percentile) and **Q3** (75th percentile).  
+2. Calculate **Interquartile Range (IQR) = Q3 - Q1**.  
+3. Filter out values beyond **1.5 × IQR** threshold.  
+
+### **Step 2.4: Convert Categorical Data to Numeric**  
+1. Convert `Species` column to numeric using `factor()`.  
+
+### **Step 2.5: Normalize Numerical Columns (0-1 Scale)**  
+1. Define a normalization function:  
+   \[
+   \text{normalized} = \frac{x - \min(x)}{\max(x) - \min(x)}
+   \]
+2. Apply this function to numerical columns (`2:5`).  
+
+### **Step 2.6: Sorting and Filtering**  
+1. Sort `iris` dataset by `SepalLengthCm` in descending order.  
+2. Filter records where `SepalLengthCm > 6.0`.  
+
+### **Step 2.7: Feature Engineering (Sepal Area Calculation)**  
+1. Create a new column `Sepal.Area = SepalLengthCm × SepalWidthCm`.  
+
+### **Step 2.8: Rename Columns for Better Readability**  
+1. Rename dataset columns:  
+   - `Length_Sepal`, `Width_Sepal`, `Length_Petal`, `Width_Petal`, `Flower_Type`, `Sepal_Area`.  
+
+---
+
+## **STEP 3: Wavelet Transformation & Analysis**  
+### **Step 3.1: Apply Discrete Wavelet Transform (DWT) on Petal.Length**  
+1. Use `dwt()` with **Haar wavelet** and **3 decomposition levels**.  
+2. Extract **approximation coefficients** (low-frequency components).  
+3. Extract **detail coefficients** (high-frequency components).  
+4. Print both coefficient sets.  
+
+### **Step 3.2: Reconstruct Signal using Inverse DWT (IDWT)**  
+1. Reconstruct `Petal.Length` using `idwt()`.  
+2. Plot **original vs. reconstructed** signal:  
+   - Blue: Original  
+   - Red: Reconstructed  
+
+### **Step 3.3: Wavelet-Based Noise Removal for Petal.Width**  
+1. Apply `dwt()` to `Petal.Width`.  
+2. Compute a **threshold** for noise removal:
+   \[
+   \text{threshold} = \text{mean}(W) + 2 \times \text{std}(W)
+   \]
+3. Apply thresholding to **suppress small coefficients** (noise removal).  
+4. Reconstruct denoised signal using `idwt()`.  
+5. Plot **original vs. denoised** Petal.Width:  
+   - Blue: Original  
+   - Red: Denoised  
+
+### **Step 3.4: Multi-Resolution Analysis (MRA) on Sepal.Length**  
+1. Apply `dwt()` on `Sepal.Length` with **3 decomposition levels**.  
+2. Plot **different resolution levels**.  
+
+### **Step 3.5: Extract Statistical Features from Wavelet Coefficients**  
+1. Perform `dwt()` on `Sepal.Width`.  
+2. Extract **approximation coefficients** (last level).  
+3. Extract **all detail coefficients**.  
+4. Compute:
+   - Mean & Standard Deviation of **Approximation Coefficients**.  
+   - Mean & Standard Deviation of **Detail Coefficients**.  
+5. Print extracted statistical features.  
+
+### **Step 3.6: Detect Outliers in Petal.Length using Wavelet Coefficients**  
+1. Compute **mean** and **standard deviation** of detail coefficients.  
+2. Identify **outliers** using threshold:  
+   \[
+   \text{outliers} = \text{abs}(W) > \text{mean} + 2 \times \text{std}
+   \]
+3. Print detected outlier indices.  
+
+---
+
+### **End of Algorithm** 🚀

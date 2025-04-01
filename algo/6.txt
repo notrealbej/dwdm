@@ -1,0 +1,75 @@
+### **Algorithm for Data Import, Cleaning, and Visualization in R**  
+**Objective:** Import a dataset, clean and preprocess the data, and visualize relevant columns using `ggplot2`.
+
+---
+
+## **STEP 1: Import and Explore Dataset**  
+### **Step 1.1: Import the CSV File**  
+1. Load the `readr` package.  
+2. Define the file path for the dataset.  
+3. Read the CSV file into `df` using `read_csv()`.  
+4. Convert `df` to a dataframe.  
+5. Print a success message indicating successful import.
+
+### **Step 1.2: Familiarize with the Dataset**  
+1. Check the dimensions (`dim(df)`) to determine the number of rows and columns.  
+2. Display the first few rows using `head(df)`.  
+3. Check the class of `df` (`class(df)`).  
+4. Get the number of rows (`nrow(df)`) and columns (`ncol(df)`).  
+5. Generate summary statistics (`summary(df)`).  
+
+---
+
+## **STEP 2: Data Cleaning and Preprocessing**  
+### **Step 2.1: Load Required Libraries**  
+1. Install and load the `dplyr` package.
+
+### **Step 2.2: Subset and Rename Columns**  
+1. Extract the first 10 columns from `df` into `data_subset`.  
+2. Display the names of all variables.  
+3. Rename the column `"How many employees does your company or organization have?"` to `"Employeeno"`.  
+
+### **Step 2.3: Data Type Correction**  
+1. Check the structure of `data_subset` (`str(data_subset)`).  
+2. Convert the `"Employeeno"` column to an integer using `as.integer()`.  
+
+### **Step 2.4: Standardize Gender Column**  
+1. Identify unique values in the `"What is your gender?"` column.  
+2. Use regular expressions (`gsub()`) to standardize gender values:
+   - Convert values starting with `"M"` or `"m"` to `"Male"`.  
+   - Convert values starting with `"F"` or `"f"` to `"Female"`.  
+
+### **Step 2.5: Handle Missing Values**  
+1. Check if there are any missing values using `any(is.na(df))`.  
+2. Count the total missing values using `sum(is.na(df))`.  
+3. Create a new dataset `data_no_missing` that removes all rows with missing values (`na.omit()`).  
+4. Create another dataset `data_filled` where all `NA` values are replaced with `0`.  
+
+---
+
+## **STEP 3: Data Visualization**  
+### **Step 3.1: Load Required Libraries**  
+1. Load `dplyr` and `ggplot2` for data manipulation and visualization.  
+
+### **Step 3.2: Create Plots**  
+#### **Histogram and Boxplot for Age Distribution**  
+1. Use `ggplot()` to create a histogram for `"What is your age?"`.  
+2. Set `binwidth = 1`, fill color to `"blue"`, and border color to `"black"`.  
+3. Label the plot accordingly.  
+4. Use `ggplot()` to create a box plot for `"What is your age?"` with `fill = "blue"`.  
+
+#### **Bar Plot and Boxplot for Diagnosed Mental Illnesses**  
+1. Use `ggplot()` to create a bar plot for `"Have you been diagnosed with a mental health condition by a medical professional?"`.  
+2. Set `fill = "red"` and border color to `"black"`.  
+3. Label the plot accordingly.  
+4. Create a box plot for the same variable using `geom_boxplot(fill = "red")`.  
+
+#### **Bar Plot and Boxplot for Believed Mental Illnesses**  
+1. Use `ggplot()` to create a bar plot for `"If maybe, what condition(s) do you believe you have?"`.  
+2. Set `fill = "green"` and border color to `"black"`.  
+3. Label the plot accordingly.  
+4. Create a box plot for the same variable using `geom_boxplot(fill = "green")`.  
+
+---
+
+### **End of Algorithm** 🚀

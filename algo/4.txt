@@ -1,0 +1,67 @@
+### **Algorithm for Dataset Analysis in R**  
+**Objective:** Perform various data analysis tasks using the `mtcars` dataset and a manually created bird dataset.
+
+---
+
+## **PART 1: mtcars Dataset Analysis**  
+### **Step 1: Load the Required Library**  
+1. Load the `dplyr` package for data manipulation.
+
+### **Step 2: Load the Built-in mtcars Dataset**  
+1. Load the `mtcars` dataset into memory.
+
+### **Step 3: Random Selection of Rows**  
+1. Set a random seed for reproducibility.  
+2. Select `n` random rows (e.g., `5` rows) from the dataset.  
+3. Print the selected rows.  
+
+### **Step 4: Random Fraction of Rows**  
+1. Select a random fraction (e.g., `30%`) of rows from the dataset.  
+2. Print the randomly selected fraction of rows.  
+
+### **Step 5: Select Specific Columns**  
+1. Extract only the `cyl`, `hp`, and `wt` columns from the dataset.  
+2. Print the extracted columns.  
+
+### **Step 6: Filter Cars with Automatic Transmission**  
+1. Filter the dataset to include only cars where the transmission type (`am`) is `0` (automatic).  
+2. Print the filtered dataset.  
+
+### **Step 7: Retrieve Cars with High Horsepower**  
+1. Filter the dataset to include only cars with `hp > 225`.  
+2. Print the cars that meet this condition.  
+
+### **Step 8: Calculate Mean and Median of mpg**  
+1. Compute the mean and median values of the `mpg` column.  
+2. Print the computed statistics.  
+
+### **Step 9: Sort Dataset by Horsepower (Descending Order)**  
+1. Sort the dataset in descending order based on `hp`.  
+2. Print the sorted dataset.  
+
+---
+
+## **PART 2: Bird Dataset Analysis**  
+### **Step 1: Create the Bird Dataset**  
+1. Manually create a dataset with two columns: `Day` (Monday–Sunday) and `Birds` (number of birds observed).  
+2. Print the original dataset.  
+
+### **Step 2: Add Day Numbers**  
+1. Add a new column `day_number`, where Monday = `1` and Sunday = `7`.  
+2. Print the updated dataset with day numbers.  
+
+### **Step 3: Remove the `Day` Column**  
+1. Drop the `Day` column from the dataset.  
+2. Print the dataset after column removal.  
+
+### **Step 4: Find the Day with the Most Birds Observed**  
+1. Identify the row where the `Birds` count is maximum.  
+2. Print the result.  
+
+### **Step 5: Sort Data by Number of Birds Seen**  
+1. Sort the dataset in descending order based on the `Birds` column.  
+2. Print the sorted dataset.  
+
+---
+
+**End of Algorithm** 🚀

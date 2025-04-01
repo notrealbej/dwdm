@@ -1,0 +1,79 @@
+# ------------------------------
+# 1. Sum, Mean, and Product of a Vector
+# ------------------------------
+
+# Case 1: Without NA values
+vec1 <- c(1.1, 2, 3.0, 4.2)
+sum_vec1 <- sum(vec1)
+mean_vec1 <- mean(vec1)
+prod_vec1 <- prod(vec1)
+
+print(paste("Case 1 - Sum:", sum_vec1))
+print(paste("Case 1 - Mean:", mean_vec1))
+print(paste("Case 1 - Product:", prod_vec1))
+
+# Case 2: With NA values (using na.rm=TRUE to ignore NA)
+vec2 <- c(1.1, NA, 2, 3.0, NA)
+sum_vec2 <- sum(vec2, na.rm = TRUE)
+mean_vec2 <- mean(vec2, na.rm = TRUE)
+prod_vec2 <- prod(vec2, na.rm = TRUE)
+
+print(paste("Case 2 - Sum:", sum_vec2))
+print(paste("Case 2 - Mean:", mean_vec2))
+print(paste("Case 2 - Product:", prod_vec2))
+
+
+# ------------------------------
+# 2. Count Occurrences of '%' and 'r' in Strings
+# ------------------------------
+
+str_vec <- c("$I%Love!R programming %", "cs^e%portal", "le%.5%rty.in", "join2022%")
+
+# Function to count occurrences of a character in each string
+count_char <- function(strings, char) {
+  sapply(strings, function(x) sum(strsplit(x, "")[[1]] == char))
+}
+
+count_percent <- count_char(str_vec, "%")
+count_r <- count_char(str_vec, "r")
+
+print("Occurrences of '%':")
+print(count_percent)
+
+print("Occurrences of 'r':")
+print(count_r)
+
+
+# ------------------------------
+# 3. Create a 3D Array with 24 Elements using dim()
+# ------------------------------
+arr <- array(1:24, dim = c(3, 4, 2))  # 3 rows, 4 columns, 2 layers
+print("3D Array:")
+print(arr)
+
+
+# ------------------------------
+# 4. Print Numbers 1 to 100 with "Buy", "Now", "BuyNow"
+# ------------------------------
+
+for (i in 1:100) {
+  if (i %% 4 == 0 & i %% 5 == 0) {
+    print("BuyNow")
+  } else if (i %% 4 == 0) {
+    print("Buy")
+  } else if (i %% 5 == 0) {
+    print("Now")
+  } else {
+    print(i)
+  }
+}
+
+
+# ------------------------------
+# 5. Get Current Date with and without Time
+# ------------------------------
+current_date <- Sys.Date()  # Without time
+current_datetime <- Sys.time()  # With time
+
+print(paste("Current Date:", current_date))
+print(paste("Current Date and Time:", current_datetime))

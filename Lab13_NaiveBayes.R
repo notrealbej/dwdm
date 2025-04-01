@@ -1,0 +1,57 @@
+library(mlbench)
+library(caret)
+library(rpart)
+library(e1071)
+library(pROC)
+
+# Load the dataset
+data("BreastCancer", package = "mlbench")
+head(BreastCancer)
+
+# Data cleaning
+BreastCancer <- na.omit(BreastCancer)
+BreastCancer <- BreastCancer[, -1]  # Remove ID column
+BreastCancer$Class <- factor(BreastCancer$Class, levels = c("benign", "malignant"))
+
+# Train-test split
+set.seed(123)
+trainIndex <- createDataPartition(BreastCancer$Class, p = 0.7, list = FALSE)
+trainData <- BreastCancer[trainIndex, ]
+testData <- BreastCancer[-trainIndex, ]
+
+# Train a decision tree with cross-validation
+
+tree_model <- rpart(Class ~ ., data = trainData, method = "class", 
+                    control = rpart.control(minsplit = 20, cp = 0.01))
+print(tree_model)
+
+# Prediction
+tree_pred <- predict(tree_model, testData, type = "prob")
+
+tree_pred_class <- ifelse(tree_pred[, 2] > 0.5, "malignant", "benign")
+tree_pred_class <- factor(tree_pred_class, levels = c("benign", "malignant"))
+
+roc_tree <- roc(testData$Class, tree_pred[, 2], levels = c("benign", "malignant"))
+
+plot(roc_tree, main = "ROC Curve - Decision Tree", col = "blue", lwd = 2)
+auc(roc_tree)
+
+
+plotcp(tree_model)
+tree_model$cptable
+library(rpart.plot)
+rpart.plot(tree_model)
+
+
+
+# Train Naive Bayes model
+nb_model <- naiveBayes(Class ~ ., data = trainData)
+nb_pred <- predict(nb_model, testData, type = "raw")
+roc_nb <- roc(testData$Class, nb_pred[, 2], levels = c("benign", "malignant"))
+plot(roc_nb, main = "ROC Curve - Naive Bayes", col = "red", lwd = 2)
+auc(roc_nb)
+
+# Compare AUC 
+cat("AUC for Decision Tree:", auc(roc_tree), "\n")
+cat("AUC for Naive Bayes:", auc(roc_nb), "\n")
+

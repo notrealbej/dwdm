@@ -1,0 +1,66 @@
+# ==============================
+# 📌 Load Required Libraries
+# ==============================
+library(ggplot2)
+
+# ==============================
+# 📌 Task 1: Create a Scatter Plot for Sepal Length vs. Sepal Width in the iris Dataset
+# ==============================
+
+# Load iris dataset
+data("iris")
+
+# Create a scatter plot for Sepal.Length vs. Sepal.Width
+# Color the points based on Species
+plot(iris$Sepal.Length, iris$Sepal.Width, 
+     col=iris$Species, pch=19,
+     xlab="Sepal Length", ylab="Sepal Width",
+     main="Scatter Plot: Sepal Length vs. Sepal Width")
+
+# ==============================
+# 📌 Task 2: Create a Scatter Plot for Horsepower vs. Miles Per Gallon in mtcars
+# ==============================
+
+# Load mtcars dataset
+data("mtcars")
+
+# Create a scatter plot for Horsepower (hp) vs. Miles per Gallon (mpg) using ggplot2
+# Color the points based on number of cylinders (cyl)
+ggplot(mtcars, aes(x=hp, y=mpg, color=factor(cyl))) +
+  geom_point(size=3) +
+  labs(title="Scatter Plot: Horsepower vs. Miles per Gallon",
+       x="Horsepower (hp)", y="Miles per Gallon (mpg)", color="Cylinders") +
+  theme_minimal()
+
+# ==============================
+# 📌 Task 3: Create a Pie Chart for the Species Distribution in the iris Dataset
+# ==============================
+
+# Use table() to count the species distribution
+species_count <- table(iris$Species)
+
+# Create a pie chart for species distribution
+pie(species_count, main="Species Distribution in iris Dataset", col=rainbow(3))
+
+# ==============================
+# 📌 Task 4: Create a Pie Chart for Cylinder Distribution in mtcars
+# ==============================
+
+# Use table() to count cylinder distribution
+cylinder_count <- table(mtcars$cyl)
+
+# Create a pie chart for cylinder distribution
+pie(cylinder_count, main="Cylinder Distribution in mtcars", col=rainbow(3))
+
+# ==============================
+# 📌 Task 5: Scatter Plot for Petal Length vs. Petal Width in iris using ggplot2
+# ==============================
+
+# Create a scatter plot for Petal.Length vs. Petal.Width using ggplot2
+# Color points based on Species and adjust point size
+ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Species)) +
+  geom_point(size=4) +
+  labs(title="Scatter Plot: Petal Length vs. Petal Width",
+       x="Petal Length", y="Petal Width", color="Species") +
+  theme_minimal()
+

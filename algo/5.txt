@@ -1,0 +1,58 @@
+### **Algorithm for Data Visualization in R using ggplot2**  
+**Objective:** Perform exploratory data analysis using box plots to visualize the distribution of variables in the `mtcars` dataset.  
+
+---
+
+### **Step 1: Load Necessary Libraries**  
+1. Load the `ggplot2` package for visualization.  
+2. Load the `dplyr` package for data manipulation.  
+
+---
+
+### **Step 2: Load Dataset**  
+1. Load the built-in `mtcars` dataset into memory.  
+
+---
+
+### **Step 3: Create a Box Plot for mpg**  
+1. Use `ggplot()` to create a box plot of the `mpg` (miles per gallon) column.  
+2. Set the `y` aesthetic to `mpg`.  
+3. Use `geom_boxplot()` to create the box plot.  
+4. Set the fill color to `"lightblue"` and the border color to `"black"`.  
+5. Add labels for the title and `y` axis.  
+6. Apply `theme_minimal()` for better styling.  
+
+---
+
+### **Step 4: Compare Horsepower Distribution by Cylinders**  
+1. Use `ggplot()` to analyze the distribution of `hp` (horsepower) across different `cyl` (cylinders).  
+2. Convert `cyl` to a factor (`as.factor(cyl)`) for categorical representation.  
+3. Set `x` aesthetic to `cyl` and `y` to `hp`.  
+4. Use `geom_boxplot()` for visualization.  
+5. Use `scale_fill_manual()` to assign different colors for different cylinder categories.  
+6. Add appropriate labels for `title`, `x`, and `y` axes.  
+7. Apply `theme_minimal()` for better styling.  
+
+---
+
+### **Step 5: Analyze Weight Distribution Based on Transmission Type**  
+1. Use `ggplot()` to analyze `wt` (weight) distribution based on `am` (transmission type).  
+2. Convert `am` (automatic = 0, manual = 1) into a factor (`as.factor(am)`).  
+3. Set `x` aesthetic to `am` and `y` to `wt`.  
+4. Use `geom_boxplot()` for visualization.  
+5. Use `scale_fill_manual()` to assign different colors (`purple` for automatic, `orange` for manual).  
+6. Add appropriate labels for `title`, `x`, and `y` axes.  
+7. Apply `theme_minimal()` for better styling.  
+
+---
+
+### **Step 6: Add Mean to Box Plot of Weight (wt)**  
+1. Use `ggplot()` to create a box plot for the `wt` (weight) variable.  
+2. Use `geom_boxplot()` with `fill = "lightgreen"` and `color = "black"`.  
+3. Add `stat_summary()` to compute and display the mean as a red `"X"` marker.  
+4. Label the plot appropriately.  
+5. Use `theme_minimal()` for better styling.  
+
+---
+
+**End of Algorithm** 🚀

@@ -1,0 +1,113 @@
+# Load required library
+library(dplyr)
+
+
+
+# ============================
+# PART 1: mtcars Dataset Analysis
+# ============================
+
+# Load the built-in mtcars dataset
+data("mtcars")
+
+# ------------------------------
+# 1. Select random n rows (e.g., 5 rows)
+# ------------------------------
+set.seed(123)  # Ensuring reproducibility
+random_n_rows <- mtcars %>% sample_n(5)
+print("Random n rows:")
+print(random_n_rows)
+
+# ------------------------------
+# 2. Select random fraction of rows (e.g., 30% of the data)
+# ------------------------------
+random_fraction_rows <- mtcars %>% sample_frac(0.3)
+print("Random fraction of rows:")
+print(random_fraction_rows)
+
+# ------------------------------
+# 3. Select cyl, hp, and wt columns
+# ------------------------------
+selected_columns <- mtcars %>% select(cyl, hp, wt)
+print("Selected columns (cyl, hp, wt):")
+print(selected_columns)
+
+# ------------------------------
+# 4. Filter cars with automatic transmission (am = 0)
+# ------------------------------
+automatic_cars <- mtcars %>% filter(am == 0)
+print("Cars with automatic transmission:")
+print(automatic_cars)
+
+# ------------------------------
+# 5. Retrieve cars with horsepower larger than 225
+# ------------------------------
+high_hp_cars <- mtcars %>% filter(hp > 225)
+print("Cars with HP > 225:")
+print(high_hp_cars)
+
+# ------------------------------
+# 6. Calculate mean & median for the variable mpg
+# ------------------------------
+mpg_stats <- mtcars %>% summarise(mean_mpg = mean(mpg), median_mpg = median(mpg))
+print("Mean and Median of mpg:")
+print(mpg_stats)
+
+# ------------------------------
+# 7. Sort the dataset by hp in descending order
+# ------------------------------
+sorted_hp <- mtcars %>% arrange(desc(hp))
+print("Sorted dataset by HP (Descending):")
+print(sorted_hp)
+
+
+# ============================
+# PART 2: Bird Dataset Analysis
+# ============================
+
+# ------------------------------
+# a) Create the dataset (Manually entered)
+# ------------------------------
+bird_data <- data.frame(
+  Day = c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"),
+  Birds = c(2, 5, 0, 8, 1, 2, 3)
+)
+
+print("Original Bird Data:")
+print(bird_data)
+
+# ------------------------------
+# b) Add a day number (Monday=1, Sunday=7)
+# ------------------------------
+bird_data$day_number <- as.numeric(factor(bird_data$Day, 
+                                          levels = c("Monday", "Tuesday", "Wednesday", 
+                                                     "Thursday", "Friday", "Saturday", "Sunday")))
+
+print("Bird Data with Day Number:")
+print(bird_data)
+
+# ------------------------------
+# c) Remove the 'Day' column
+# ------------------------------
+bird_data <- bird_data %>% select(-Day)
+
+print("Bird Data after removing 'Day' variable:")
+print(bird_data)
+
+# ------------------------------
+# d) Find the Day Number with Most Birds Observed
+# ------------------------------
+most_birds_day <- bird_data %>% filter(Birds == max(Birds))
+
+print("Day number with most birds observed:")
+print(most_birds_day)
+
+# ------------------------------
+# e) Sort Data by Number of Birds Seen
+# ------------------------------
+sorted_bird_data <- bird_data %>% arrange(desc(Birds))
+
+print("Sorted Bird Data by number of birds seen:")
+print(sorted_bird_data)
+
+
